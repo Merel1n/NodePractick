@@ -11,3 +11,9 @@ export const getProductById = (productId) => {
 export const createProduct = (newProduct) => {
   return productModel.create(newProduct);
 };
+
+export const editProduct = (productId, payload) => {
+  return productModel.findOneAndUpdate({ _id: productId }, payload, {
+    new: true,
+  });
+};
