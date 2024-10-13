@@ -7,3 +7,7 @@ export const getAllProducts = () => {
 export const getProductById = (productId) => {
   return productModel.findById(productId);
 };
+
+export const createProduct = (newProduct) => {
+  return productModel.create(newProduct);
+};
