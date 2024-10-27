@@ -9,8 +9,9 @@ import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 export const getAllProductController = async (req, res) => {
   const filter = parseFilterParams(req.query);
+  console.log(req.user);
 
-  const data = await getAllProducts(filter);
+  const data = await getAllProducts(filter, req.user._id);
 
   res.send({
     status: 200,
@@ -35,7 +36,7 @@ export const getProductByIdController = async (req, res) => {
 
 export const createProductController = async (req, res) => {
   console.log(req.body);
-  const newProduct = await createProduct(req.body);
+  const newProduct = await createProduct({ ...req.body, userId: req.user._id });
   res.status(201).json({
     status: 201,
     message: 'Successfully created a product!',
