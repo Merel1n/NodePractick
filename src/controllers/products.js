@@ -7,7 +7,9 @@ import {
 } from '../services/products.js';
 
 export const getAllProductController = async (req, res) => {
+  
   const data = await getAllProducts();
+  
 
   res.send({
     status: 200,
