@@ -5,11 +5,12 @@ import {
   createProduct,
   editProduct,
 } from '../services/products.js';
+import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 export const getAllProductController = async (req, res) => {
-  
-  const data = await getAllProducts();
-  
+  const filter = parseFilterParams(req.query);
+
+  const data = await getAllProducts(filter);
 
   res.send({
     status: 200,
