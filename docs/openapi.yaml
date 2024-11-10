@@ -1,0 +1,23 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: <назва вашого додатку>
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: >
+    <опис вашого додатку>
+tags:
+  - name: Products
+    description: Operations related to products
+servers:
+  - url: http://localhost:3000
+paths:
+  /products:
+    get:
+      $ref: ../swagger/paths/products/get.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
