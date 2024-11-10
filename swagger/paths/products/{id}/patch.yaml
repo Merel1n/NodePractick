@@ -1,19 +1,22 @@
 tags:
   - Products
-summary: Create product
-operationId: createProduct
-description: 'Create a product with payload'
+summary: Edit product
+operationId: editProduct
+description: 'Edit a product with payload'
 security:
   - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
 requestBody:
   content:
     multipart/form-data:
       schema:
         type: object
-        required:
-          - name
-          - price
-          - category
         properties:
           name:
             description: "Product's name"
@@ -32,8 +35,8 @@ requestBody:
             description: "Product's description"
             type: string
 responses:
-  '201':
-    description: Creates a product
+  '200':
+    description: Edit a product
     content:
       application/json:
         schema:
@@ -45,16 +48,18 @@ responses:
           properties:
             status:
               type: integer
-              example: 201
+              example: 200
             message:
               type: string
-              example: Successfully created a product!
+              example: Successfully edit a product!
             data:
               type: object
-              $ref: '../../components/shema/product.yaml'
+              $ref: '../../../components/shema/product.yaml'
   '400':
-    $ref: '../../components/responses/400.yaml'
+    $ref: '../../../components/responses/400.yaml'
   '401':
-    $ref: '../../components/responses/401.yaml'
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
   '500':
-    $ref: '../../components/responses/500.yaml'
+    $ref: '../../../components/responses/500.yaml'
